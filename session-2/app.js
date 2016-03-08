@@ -7,7 +7,7 @@ TodoApp.TodoItem = function (description){
     this._doneDate = null;
     var done = false;
 
-    this.isDone = function () {
+    this._isDone = function () {
         return done;
     };
     this.__defineSetter__("done", function(val){
@@ -21,7 +21,7 @@ TodoApp.TodoItem = function (description){
 
 TodoApp.TodoItem.prototype.toString = function() {
     var result = 'Task ' + this.description + ' was created at ' + this.date.toLocaleString();
-    if (this.isDone()){
+    if (this._isDone()){
         result += ' and finished at ' + this._doneDate.toLocaleTimeString();
     }
     else{
@@ -51,8 +51,7 @@ TodoApp.TodoList.prototype.inspect = TodoApp.TodoList.prototype.toString;
 // Todo Items Factory
 TodoApp.TodoFactory = {
     createItem: function(description) {
-        var todoItem = new TodoApp.TodoItem(description);
-        return todoItem;
+        return new TodoApp.TodoItem(description);
     },
     createApp: function() {
         return new TodoApp.TodoList();
@@ -65,10 +64,10 @@ var buyMilk = TodoApp.TodoFactory.createItem("buy milk");
 myToDoApp.Add(buyMilk);
 myToDoApp.Add(TodoApp.TodoFactory.createItem("read a book"));
 
-console.log('Have I bought milk ? ' + buyMilk.isDone());
+console.log('Have I bought milk ? ' + buyMilk._isDone());
 
 buyMilk.done = true;
-console.log('Have I bought milk ? ' + buyMilk.isDone());
+console.log('Have I bought milk ? ' + buyMilk._isDone());
 console.log(myToDoApp);
 
 
