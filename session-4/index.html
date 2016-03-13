@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo App</title>
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="styles/todo.css">
+    <script src="js/toDoApp.js"></script>
+    <script src="js/toDoItem.js"></script>
+    <script src="js/toDoList.js"></script>
+    <script src="js/toDoItemView.js"></script>
+    <script src="js/toDoListView.js"></script>
+
+
+    <script type="text/javascript">
+        function showAddItem() {
+            document.getElementById('addBtn').className="hide";
+            document.getElementById('addSection').className="";
+        }
+        function addItem(){
+            var desc = document.getElementById('newItemDesc').value;
+            myToDoApp.add(TodoApp.ToDoFactory.createItem(desc));
+
+            document.getElementById('addBtn').className="";
+            document.getElementById('addSection').className="hide";
+            document.getElementById('newItemDesc').value="";
+
+            syncModelAndView(myToDoApp);
+        }
+        function syncModelAndView() {
+            if (myToDoAppView) {
+                myToDoAppView.clean();
+                myToDoAppView.render();
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        var myToDoApp = TodoApp.ToDoFactory.createApp();
+        var modal = [{desc:'By Milk', done:true},{desc:'Learn JS', done:false}];
+        modal.forEach(function(item) {
+            myToDoApp.add(TodoApp.ToDoFactory.createItem(item.desc, item.done));
+        });
+        var myToDoAppView;
+        window.onload = function() {
+            var todoListUl = document.getElementsByClassName('js-todo')[0];
+            myToDoAppView = new TodoApp.toDoListView(myToDoApp,todoListUl);
+            syncModelAndView(myToDoApp);
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <section class="todo">
+            <div class="todo--title">
+                <a id="addBtn" href="javascript:void(0);" onclick="showAddItem();">Add</a>
+                <div id="addSection" class="hide">
+                    Add another task:
+                    <input id="newItemDesc" type="text" placeholder="Task Description"/>
+                    <input type="button" value="add" onclick="addItem()"/>
+                </div>
+            </div>
+            <ul class="todo--list js-todo">
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
