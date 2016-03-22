@@ -15,6 +15,6 @@ TodoApp.ToDoListView = class ToDoListView {
     }
 
     clean() {
-        this.myBaseNode.innerHTML = '';
+        this.myBaseNode.html('');
     }
 };

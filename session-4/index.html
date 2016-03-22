@@ -43,7 +43,7 @@
         var myToDoAppView;
         window.onload = function() {
             var todoListUl = document.getElementsByClassName('js-todo')[0];
-            myToDoAppView = new TodoApp.toDoListView(myToDoApp,todoListUl);
+            myToDoAppView = new TodoApp.ToDoListView(myToDoApp,todoListUl);
             syncModelAndView(myToDoApp);
         }
 

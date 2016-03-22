@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo App</title>
+    <link rel="stylesheet" type="text/css" href="build/css/index.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="build/js/todo.js"></script>
+</head>
+<body>
+    <div>
+        <section class="todo">
+            <div class="todo--title">
+                <a id="addBtn" href="javascript:void(0);">Add</a>
+                <a id="filterBtn" href="javascript:void(0);">Filter</a>
+                <div id="addSection" class="hide">
+                    Add another task:
+                    <input id="newItemDesc" type="text" placeholder="Task Description"/>
+                    <input id="addItemBtn" type="button" value="add"/>
+                </div>
+                <div id="filterSection" class="hide">
+                    Filter out done tasks ?
+                    <input type="checkbox" id="showOnlyToDoList">
+                </div>
+            </div>
+            <ul class="todo--list js-todo">
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
