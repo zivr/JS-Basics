@@ -2,11 +2,14 @@ class Board {
     constructor(elementsInRow) {
         this._elementsInRow = elementsInRow;
         this.squares = new SquareCollection();
+
+        $(this).on(Board.EVENTS.MOVE, this.onMoveSquares.bind(this));
     }
 
     static get EVENTS() {
         return {
             SHUFFEL: 'SHUFFEL',
+            MOVE: 'MOVE',
             SWAP: 'SWAP',
             WIN: 'WIN'
         };
@@ -41,6 +44,7 @@ class Board {
             this.shuffle();
         });
     }
+
     _checkIsSolvable() {
         return new Promise((resolve, reject) => {
             let inversions = 0;
@@ -56,5 +60,18 @@ class Board {
             });
             inversions % 2 == 0 ? resolve() : reject();
         });
-    };
+    }
+
+    onMoveSquares(e, square){
+        const blankSquare = this.squares.getBlankSquare();
+        if (this.squares.isNeighbors(square, blankSquare)) {
+            this.squares.swap(blankSquare, square);
+            $(this).trigger(Board.EVENTS.SWAP, {
+                squareA: square,
+                posA: this.squares.indexOf(square),
+                squareB: blankSquare,
+                posB: this.squares.indexOf(blankSquare)
+            });
+        }
+    }
 }

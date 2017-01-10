@@ -3,6 +3,7 @@ class SliderView {
         this._board = board;
         this._$rootEl = $rootElement;
 
+        $(this._board).on(Board.EVENTS.SWAP, this.onSwapSquares.bind(this));
         $(this._board).on(Board.EVENTS.SHUFFEL, this.resetUI.bind(this));
     }
 
@@ -25,6 +26,18 @@ class SliderView {
                 $squareEl.addClass('board__cell-even');
             }
             self._$rootEl.append($squareEl);
+            if (!square.isBlank) {
+                $squareEl.click(self.onSquareClicked.bind(self));
+            }
         }
+    }
+
+    onSquareClicked({currentTarget}) {
+        const $clickedSquare = $(currentTarget);
+        $(this._board).trigger(Board.EVENTS.MOVE, $clickedSquare.data('square'));
+    }
+
+    onSwapSquares(e , {posA, posB}) {
+
     }
 }
