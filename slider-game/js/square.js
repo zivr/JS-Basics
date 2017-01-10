@@ -25,6 +25,14 @@ class SquareCollection{
         this.squares = [];
     }
 
+    indexOf(square) {
+        return this.squares.indexOf(square);
+    }
+
+    every(callback) {
+        return this.squares.every(callback);
+    }
+
     *[Symbol.iterator]() {
         for(let i= 0, len=this.squares.length; i < len; i++){
             yield this.squares[i];
