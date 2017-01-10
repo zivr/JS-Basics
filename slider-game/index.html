@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/page.css">
     <link rel="stylesheet" type="text/css" href="css/todo.css">
     <link rel="stylesheet" type="text/css" href="css/board.css">
@@ -23,6 +25,19 @@
     </script>
 
     <div class="text-middle">Moves: <span class="js-moves-counter"></span></div>
+    <!-- Modal -->
+    <div class="modal fade js-won-message" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Congratulation, you have won in <span class="js-moves-counter"></span> moves.</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
     <section class="text-middle">
@@ -51,7 +66,7 @@
                 </li>
 
                 <li class="todo-list__item">
-                    <input id="checkbox5" type="checkbox">
+                    <input id="checkbox5" type="checkbox" checked>
                     <label for="checkbox5">Calculate if the user win</label>
                 </li>
 

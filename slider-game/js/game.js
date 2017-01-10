@@ -2,6 +2,7 @@ class Game {
     constructor(elementsInRow) {
         this._board = new Board(elementsInRow);
         this._view = new SliderView(this._board , $('.js-board'));
+        $(this._board).on(Board.EVENTS.WIN, this.onGameWon.bind(this));
     }
 
     static startGame(elementsInRow) {
@@ -12,6 +13,10 @@ class Game {
 
     shuffle() {
         this._board.shuffle();
+    }
+
+    onGameWon() {
+        $('.js-won-message').modal('show');
     }
 }
 
