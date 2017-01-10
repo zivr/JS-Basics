@@ -38,6 +38,11 @@ class SliderView {
     }
 
     onSwapSquares(e , {posA, posB}) {
-
+        const $elA = this._$rootEl.find('div:nth-child('+(posA+1)+')' );
+        const $elB = this._$rootEl.find('div:nth-child('+(posB+1)+')' );
+        const $tmpEl = $('<span>').hide();
+        $elA.before($tmpEl);
+        $elB.before($elA);
+        $tmpEl.replaceWith($elB);
     }
 }

@@ -26,7 +26,13 @@ class SquareCollection{
     }
 
     getBlankSquare() {
-
+        //We don't use find because it is not supported by IE
+        let i = 0, len = this.squares.length;
+        let square;
+        do {
+            square = this.squares[i++];
+        } while (i < len && !square.isBlank);
+        return square;
     }
 
     indexOf(square) {
