@@ -3,7 +3,7 @@ class SliderView {
         this._board = board;
         this._$rootEl = $rootElement;
 
-        this.resetUI();
+        $(this._board).on(Board.EVENTS.SHUFFEL, this.resetUI.bind(this));
     }
 
     resetUI() {

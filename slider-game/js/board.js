@@ -2,8 +2,14 @@ class Board {
     constructor(elementsInRow) {
         this._elementsInRow = elementsInRow;
         this.squares = new SquareCollection();
+    }
 
-        this.shuffle();
+    static get EVENTS() {
+        return {
+            SHUFFEL: 'SHUFFEL',
+            SWAP: 'SWAP',
+            WIN: 'WIN'
+        };
     }
 
     get rowsCount() {
@@ -16,10 +22,24 @@ class Board {
 
     shuffle() {
         const amountOfSquare = this.colsCount * this.rowsCount;
-        for (let i = 1; i <= amountOfSquare-1; i++) {
-            this.squares.add(new Square(i));
+
+        let squaresNum = [];
+        for (let i = 0; i < amountOfSquare; i++) {
+            squaresNum[i] = i + 1;
         }
-        this.squares.add(new Square());
+        squaresNum[amountOfSquare - 1] = null;
+
+        this.squares.clean();
+        for (let i = 1; i <= amountOfSquare; i++) {
+            const num = Math.floor(Math.random() * squaresNum.length);
+            this.squares.add(new Square(squaresNum[num]));
+            squaresNum.splice(num, 1);
+        }
+        this._checkIsSolvable().then(()=> {
+            $(this).trigger(Board.EVENTS.SHUFFEL);
+        }, () => {
+            this.shuffle();
+        });
     }
     _checkIsSolvable() {
         return new Promise((resolve, reject) => {

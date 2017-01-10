@@ -6,7 +6,12 @@ class Game {
 
     static startGame(elementsInRow) {
         const g = new Game(elementsInRow);
+        g.shuffle();
         return g;
+    }
+
+    shuffle() {
+        this._board.shuffle();
     }
 }
 
