@@ -3,3 +3,13 @@ body {
     margin: auto 0;
     text-align: center;
 }
+
+.title {
+    text-shadow: 1px 2px 0 #ebebeb, 0 0 0 black, -1px 1px 0 #ebebeb, 5px 5px 0 #333;
+    color: rgba(64, 65, 63, 1.0000);
+    font-family: 'Croissant One', cursive;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
