@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Slider Puzzle</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/page.css">
     <link rel="stylesheet" type="text/css" href="css/todo.css">
+    <link rel="stylesheet" type="text/css" href="css/board.css">
+    <script src="js/game.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/sliderView.js"></script>
+    <script src="js/square.js"></script>
 </head>
 <body>
     <h1 class="title">Play Slider!</h1>
     <div class="js-board">
-        <img src="game.png" style="width: 300px"/>
+        <script type="application/javascript">
+            Game.startGame(3);
+        </script>
     </div>
 
     <div class="text-middle">Moves: <span class="js-moves-countr"></span></div>
@@ -26,7 +36,7 @@
                 </li>
 
                 <li class="todo-list__item">
-                    <input id="checkbox2" type="checkbox">
+                    <input id="checkbox2" type="checkbox" checked>
                     <label for="checkbox2">Display the board</label>
                 </li>
 
